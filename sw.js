@@ -3,7 +3,7 @@
    Strategy: network-first for the page (so updates land), cache-first for everything
    else (fonts, etc.), with a cached fallback when there's no connection. */
 
-const CACHE = 'keons-playlist-v3';
+const CACHE = 'keons-playlist-v6';
 
 self.addEventListener('install', (e) => {
   self.skipWaiting();
