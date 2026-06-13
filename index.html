@@ -56,6 +56,10 @@
   .meta .where{font-size:14px;color:var(--text);font-weight:500;}
   .meta .when{font-family:"DM Mono";font-size:12px;color:var(--muted);margin-left:auto;}
   .gchips{display:flex;gap:6px;padding:0 16px 14px;background:var(--ink-2);flex-wrap:wrap;}
+  .sectlabel{display:flex;align-items:center;gap:8px;margin:20px 2px 4px;font-family:"Unbounded";font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.02em;color:var(--text);}
+  .sectlabel.muted{color:var(--muted);font-weight:600;font-size:12px;}
+  .sectlabel .sub{font-family:"DM Sans";font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);font-size:12px;}
+  .star{position:absolute;top:12px;left:12px;z-index:2;background:rgba(11,7,16,.55);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.28);color:#fff;font-family:"DM Mono";font-size:10px;letter-spacing:.05em;text-transform:uppercase;padding:4px 9px;border-radius:999px;display:flex;align-items:center;gap:4px;}
   .g{font-size:11px;color:var(--muted);border:1px solid var(--line);padding:3px 9px;border-radius:999px;}
 
   .sheet{position:fixed;inset:0;z-index:20;background:var(--ink);overflow-y:auto;transform:translateY(100%);transition:transform .32s cubic-bezier(.22,1,.36,1);padding:0 16px calc(40px + env(safe-area-inset-bottom));}
@@ -105,7 +109,9 @@
   .photo{width:128px;height:128px;border-radius:50%;border:2px solid transparent;background:linear-gradient(var(--ink-2),var(--ink-2)) padding-box,linear-gradient(120deg,var(--magenta),var(--amber),var(--cyan)) border-box;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px;font-family:"DM Mono";margin-bottom:24px;overflow:hidden;text-align:center;}
   .photo img{width:100%;height:100%;object-fit:cover;}
   #splash .hi{font-family:"Unbounded";font-weight:900;font-size:34px;line-height:1.05;background:linear-gradient(92deg,var(--magenta),var(--amber),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;}
-  #splash p{color:var(--muted);max-width:300px;margin:14px 0 28px;}
+  #splash p{color:var(--muted);max-width:300px;margin:14px 0 18px;}
+  .dedication{font-family:"DM Mono";font-size:11px;line-height:1.7;color:var(--muted);letter-spacing:.02em;margin:0 0 26px;}
+  .dedication b{color:var(--text);font-weight:500;}
   .enter{background:var(--text);color:var(--ink);border:none;padding:15px 30px;border-radius:999px;font-family:"DM Sans";font-weight:700;font-size:15px;cursor:pointer;}
 
   nav{position:fixed;bottom:0;left:0;right:0;z-index:15;display:flex;justify-content:center;gap:6px;padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:linear-gradient(transparent,var(--ink) 38%);}
@@ -140,6 +146,20 @@
   .safe h3{font-size:14px;text-transform:uppercase;margin-bottom:10px;}
   .toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);background:var(--text);color:var(--ink);padding:11px 20px;border-radius:999px;font-weight:700;font-size:13px;opacity:0;transition:.3s;z-index:40;pointer-events:none;}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .menu{position:absolute;top:calc(14px + env(safe-area-inset-top));right:0;background:var(--ink-2);border:1px solid var(--line);color:var(--text);width:40px;height:40px;border-radius:12px;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:8;}
+  .menu-pop{position:absolute;top:calc(60px + env(safe-area-inset-top));right:0;background:var(--ink-2);border:1px solid var(--line);border-radius:14px;padding:6px;z-index:9;min-width:190px;box-shadow:0 14px 44px rgba(0,0,0,.55);display:none;}
+  .menu-pop.open{display:block;}
+  .menu-pop button{display:flex;align-items:center;gap:11px;width:100%;background:transparent;border:none;color:var(--text);font-family:"DM Sans";font-weight:500;font-size:14px;padding:12px;border-radius:10px;cursor:pointer;text-align:left;}
+  .menu-pop button:active{background:var(--haze);}
+  .leadp{color:var(--muted);font-size:14px;margin:6px 0 4px;}
+  .dedibox{background:linear-gradient(92deg,rgba(255,46,151,.12),rgba(43,210,255,.07));border:1px solid rgba(255,46,151,.3);border-radius:var(--r);padding:16px;margin:14px 0 6px;font-size:13px;line-height:1.6;color:var(--text);}
+  .dedibox b{color:#fff;}
+  .jcard{margin:16px 0;padding:16px;border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(180deg,rgba(255,46,151,.05),transparent);}
+  .jcard h3{font-size:16px;text-transform:uppercase;}
+  .jcard .jnum{font-family:"DM Mono";color:var(--magenta);font-size:12px;}
+  .jcard .jdesc{color:var(--muted);font-size:13px;margin:4px 0 8px;}
+  .promptbox{background:var(--ink);border:1px solid var(--line);border-radius:12px;padding:13px;font-family:"DM Mono";font-size:11.5px;line-height:1.6;color:var(--muted);white-space:pre-wrap;max-height:180px;overflow:auto;margin:0 0 12px;}
+  .copybtn{background:var(--text);color:var(--ink);border:none;padding:11px 18px;border-radius:999px;font-family:"DM Sans";font-weight:700;font-size:13px;cursor:pointer;}
   :focus-visible{outline:2px solid var(--cyan);outline-offset:2px;}
   @media (prefers-reduced-motion:reduce){.rig span{animation:none;}.sheet{transition:none;}}
 </style>
@@ -151,14 +171,20 @@
   <!-- Swap the placeholder for Keon's photo: replace the inner text with  <img src="keon.jpg" alt="Keon" /> -->
   <div class="photo" id="photoSlot"><img src="data:image/jpeg;base64,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" alt="Keon" /></div>
   <div class="hi">Happy 29th,<br>Keon</div>
-  <p>You said you wanted to see more of the world. Here are five of its loudest, brightest corners &mdash; and how to actually go.</p>
+  <p>You said you wanted to see more of the world. Here are your top picks &mdash; plus a few more worth crossing an ocean for, and how to actually go.</p>
+  <div class="dedication">Made for you by your friend <b>Patrick Yaeger</b><br>for your 29th birthday &middot; Saturday, June 13, 2026<br>Cherokee Park Place &middot; Louisville, Kentucky</div>
   <button class="enter" id="enterBtn">Let's go &rarr;</button>
 </div>
 
 <div class="app">
   <header>
+    <button class="menu" id="menuBtn" aria-label="Menu">&#9776;</button>
+    <div class="menu-pop" id="menuPop">
+      <button data-go="guide">&#128214;&nbsp; Guide</button>
+      <button data-go="journeys">&#129517;&nbsp; Inner Journeys</button>
+    </div>
     <span class="wordmark" id="wordmark" title="Keon's Playlist">Keon's Playlist</span>
-    <div class="tag">Your festival passport &middot; pick a world, learn the ropes</div>
+    <div class="tag">Your festival passport &middot; your picks, plus a world to explore</div>
     <div class="chips" id="chips"></div>
   </header>
   <div class="panel show" id="home"></div>
@@ -186,6 +212,44 @@
       </ul>
     </div>
   </div>
+
+  <div class="panel" id="guide">
+    <div class="secthead"><h2>Guide</h2><p>How to get the most out of your app.</p></div>
+    <div class="dedibox">Made for you by your friend <b>Patrick Yaeger</b> for your 29th birthday &middot; Saturday, June 13, 2026 &middot; Cherokee Park Place, Louisville, Kentucky. Happy birthday, Keon &mdash; go see the world.</div>
+    <section class="blk"><h3>The home screen</h3>
+      <ul class="tips">
+        <li><b>Keon's Picks</b> (the &#9733; row up top): your three &mdash; Electric Forest, Lollapalooza, EDC Orlando.</li>
+        <li><b>Bucket list</b>: five worth crossing an ocean for.</li>
+        <li>The <b>chips</b> across the top filter the list by vibe. Tap any card to open it.</li>
+      </ul></section>
+    <section class="blk"><h3>Inside a festival</h3>
+      <ul class="tips">
+        <li><b>Real Talk</b> &mdash; green flags and red flags, gathered from real festival-goers.</li>
+        <li><b>Dates &mdash; next 5 years</b>, each marked Confirmed or Projected. Reconfirm on the official site before booking.</li>
+        <li>A live <b>countdown</b>, rough <b>cost</b>, a <b>Spotify</b> warm-up, <b>plan-it</b> links, and <b>community</b>.</li>
+      </ul></section>
+    <section class="blk"><h3>The fun stuff</h3>
+      <ul class="tips">
+        <li><b>&#10024; Match</b> &mdash; four questions, and it picks your festival.</li>
+        <li><b>&#127890; Kit</b> &mdash; a first-festival checklist; your ticks save on that phone.</li>
+        <li><b>&#129517; Inner Journeys</b> (in this menu) &mdash; copy-paste prompts that turn any AI into a personal interviewer.</li>
+      </ul></section>
+    <section class="blk"><h3>&#127769; The Afters &mdash; your secret tab</h3>
+      <p class="leadp">Hidden on purpose. To unlock it: <b>triple-tap the &ldquo;Keon's Playlist&rdquo; title</b> at the top of the home screen. A new Afters button appears in the bottom bar and stays there. Inside: the after-hours and LGBTQ+ scene around each festival, plus safe-connecting tips.</p></section>
+    <section class="blk"><h3>Honest notes</h3>
+      <ul class="tips">
+        <li>Prices and projected dates are approximate &mdash; confirm officially before booking.</li>
+        <li>Works offline after you open it once on WiFi; live links still need a connection.</li>
+        <li>No accounts, so each phone remembers its own progress.</li>
+        <li>EDC Orlando is 18+ (21+ VIP) and needs photo ID; your other picks are all-ages.</li>
+      </ul></section>
+  </div>
+
+  <div class="panel" id="journeys">
+    <div class="secthead"><h2>Inner Journeys</h2><p>Six deep dives into you. Copy one, paste it into any AI, and let it interview you &mdash; one question at a time.</p></div>
+    <p class="leadp">Each prompt makes the AI ask one question, wait for your answer, check you're ready, then adapt the next question to what you said. There's an optional <b>[your specific angle]</b> slot if you want to aim a session. Tap <b>Copy</b>, paste, and go.</p>
+    <div id="journeysBody"></div>
+  </div>
 </div>
 
 <div class="sheet" id="sheet">
@@ -208,6 +272,57 @@
 const store={get(k){try{return JSON.parse(localStorage.getItem(k));}catch(e){return null;}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
 
 const FESTS=[
+ {id:"ef",name:"Electric Forest",where:"Rothbury, Michigan",next:"Jun 2026",cd:"2026-06-25T15:00:00",featured:true,
+  genres:["EDM","Electronic","Jam Band"],grad:["#48C46B","#7A1FFF"],
+  good:["A forest turned into a glowing dreamworld \u2014 hidden art, surprise sets, sunrise yoga to 4am raves.",
+        "The 'Forest Family' is famously tight-knit, kind and inclusive. A great first big one to go to solo.",
+        "A rare mix of electronic and jam bands \u2014 The String Cheese Incident are basically the house band."],
+  watch:["It's camping in the Michigan woods \u2014 prep for heat, rain and mud, and pack to be self-sufficient.",
+         "It's remote: fly into Grand Rapids (GRR), about 45 min away, then drive in.",
+         "Passes sell out \u2014 get on the on-sale alerts early."],
+  tips:["Fly into Grand Rapids (GRR) and rent a car for the last stretch.",
+        "Grab a GA + camping wristband; The Forest (the magical hidden area) is best explored at night.",
+        "Sign up for loyalty / on-sale alerts so you don't miss tickets."],
+  cost:"\u2248 $450+ 4-day GA",costNote:"Face GA + camping; resale runs higher. Via AXS. All ages. Confirm live.",
+  ticket:"Tickets via AXS; passes sell out \u2014 sign up for on-sale alerts.",
+  editions:[["2026","Jun 25\u201328","c"],["2027","Late June (projected)","p"],["2028","Late June (projected)","p"],["2029","Late June (projected)","p"],["2030","Late June (projected)","p"]],
+  spotify:"Electric Forest",official:"https://www.electricforest.com/",schedule:"https://www.electricforest.com/lineup/",
+  commu:{name:"r/electricforest",url:"https://www.reddit.com/r/electricforest/"},queer:{name:"Forest Family \u2014 r/aves",url:"https://www.reddit.com/r/aves/"}},
+
+ {id:"lolla",name:"Lollapalooza",where:"Chicago, USA",next:"Jul 2026",cd:"2026-07-30T11:00:00",featured:true,
+  genres:["Everything","Pop","Hip-Hop","Electronic"],grad:["#FFB347","#2BD2FF"],
+  good:["170+ artists across eight stages, every genre going, with the Chicago skyline and Lake Michigan behind it.",
+        "Right downtown \u2014 no camping, just walk in from a hotel and back to a real bed.",
+        "So much choice there's something worth seeing literally every hour."],
+  watch:["It's a big park \u2014 comfy shoes, lots of walking between stages.",
+         "Summer heat and sudden storms (they've paused for weather before) \u2014 hydrate, watch the forecast.",
+         "4-day passes sell out (often a waitlist); single-day tickets are the easier grab."],
+  tips:["Stay in the Loop or South Loop and walk in.",
+        "Map your day in advance \u2014 the headliners you want will clash across stages.",
+        "Single-day tickets are perfect if four days feels like a lot."],
+  cost:"\u2248 $400+ 4-day GA",costNote:"Single-day from ~$150; resale much higher. Via lollapalooza.com. All ages. Confirm live.",
+  ticket:"As of 2026, 4-day passes were on a waitlist; single-day and resale options remained.",
+  editions:[["2026","Jul 30 \u2013 Aug 2","c"],["2027","Late July / early Aug (projected)","p"],["2028","Late July / early Aug (projected)","p"],["2029","Late July / early Aug (projected)","p"],["2030","Late July / early Aug (projected)","p"]],
+  spotify:"Lollapalooza",official:"https://www.lollapalooza.com/",schedule:"https://www.lollapalooza.com/lineup",
+  commu:{name:"r/Lollapalooza",url:"https://www.reddit.com/r/Lollapalooza/"},queer:{name:"Chicago \u2014 Northalsted scene",url:"https://www.reddit.com/r/chicago/"}},
+
+ {id:"edc",name:"EDC Orlando",where:"Orlando, Florida",next:"Nov 2026",cd:"2026-11-06T13:00:00",featured:true,
+  genres:["EDM","Electronic","Mainstage"],grad:["#7A1FFF","#2BD2FF"],
+  good:["Insomniac's full-tilt production \u2014 towering stages, fireworks, art cars, the whole 'Under the Electric Sky'.",
+        "Famously inclusive 'All Are Welcome' PLUR culture \u2014 easy to feel embraced as a newcomer.",
+        "Non-camping and ~25 min from the airport (MCO) \u2014 you sleep in a hotel, not a tent."],
+  watch:["18+ for general admission, 21+ for VIP \u2014 bring valid government photo ID, no exceptions.",
+         "Florida November: warm by day, cooler late \u2014 layer up for the overnight sets.",
+         "It runs 1pm to late \u2014 pace yourself across the weekend."],
+  tips:["Fly into Orlando (MCO), about 25 min from Tinker Field.",
+        "The Insomniac hotel + shuttle package is the easy button for a first-timer.",
+        "Passes are on layaway via Front Gate; lineup usually drops Sept/Oct."],
+  cost:"\u2248 $220+ 3-day GA",costNote:"GA+ ~$300, VIP ~$420 (early-bird); layaway via Front Gate. 18+ (21+ VIP), ID required. Confirm live.",
+  ticket:"3-day GA/GA+/VIP via Front Gate with layaway; 2026 lineup typically announced Sept/Oct.",
+  editions:[["2026","Nov 6\u20138","c"],["2027","Early November (projected)","p"],["2028","Early November (projected)","p"],["2029","Early November (projected)","p"],["2030","Early November (projected)","p"]],
+  spotify:"EDC Orlando",official:"https://orlando.electricdaisycarnival.com/",schedule:"https://orlando.electricdaisycarnival.com/lineup/",
+  commu:{name:"r/EDC",url:"https://www.reddit.com/r/EDC/"},queer:{name:"Orlando queer scene",url:"https://www.reddit.com/r/orlando/"}},
+
  {id:"tml",name:"Tomorrowland",where:"Boom, Belgium",next:"Jul 2026",cd:"2026-07-17T12:00:00",
   genres:["EDM","Electronic","Mainstage"],grad:["#FF2E97","#7A1FFF"],
   good:["Stage production is on another planet \u2014 people fly in just for the visuals.",
@@ -219,7 +334,7 @@ const FESTS=[
   tips:["Pre-registration opens around December, with ticket sales in January \u2014 set a reminder.",
         "First time? Global Journey takes the logistics off your plate.",
         "Fly into Brussels (BRU); the train from Brussels to Boom is about 40\u201350 minutes."],
-  cost:"\u2248 \u20ac300 weekend pass",costNote:"Day passes from ~\u20ac138; travel packages far higher. Strictly 18+. Confirm live.",
+  cost:"\u2248 \u20ac400 Full Madness (weekend)",costNote:"Day Pass from ~\u20ac153; comfort tiers & packages far higher. Strictly 18+. Confirm live.",
   ticket:"As of June 2026, 2026 passes are largely sold out \u2014 resale only, or aim for 2027.",
   editions:[["2026","Jul 17\u201319 & 24\u201326","c"],["2027","Jul 16\u201318 & 23\u201325","c"],["2028","Late July (projected)","p"],["2029","Late July (projected)","p"],["2030","Late July (projected)","p"]],
   spotify:"Tomorrowland",official:"https://www.tomorrowland.com/",schedule:"https://www.tomorrowland.com/en/festival/line-up",
@@ -253,7 +368,7 @@ const FESTS=[
   tips:["Take the Joetsu Shinkansen to Echigo-Yuzawa, then the official shuttle bus.",
         "Single-day tickets exist if three days feels like a lot.",
         "Build a Tokyo trip around it \u2014 you're flying that far anyway."],
-  cost:"\u2248 \u00a545,000+ three-day",costNote:"Day tickets cheaper. All ages. Confirm on the official site.",
+  cost:"\u2248 \u00a559,000 three-day (~$370)",costNote:"1-day ~\u00a526,000; under-22 ~\u00a518,000; under-15 free with an adult. Confirm live.",
   ticket:"As of June 2026, 3-day and Saturday general-admission passes had sold out; Friday/Sunday and Friday-night tickets remained.",
   editions:[["2026","Jul 24\u201326","c"],["2027","Late July (projected)","p"],["2028","Late July (projected)","p"],["2029","Late July (projected)","p"],["2030","Late July (projected)","p"]],
   spotify:"Fuji Rock",official:"https://www.fujirockfestival.com/en/",schedule:"https://www.fujirockfestival.com/en/artist/",
@@ -270,7 +385,7 @@ const FESTS=[
   tips:["Grab a multi-day pass with camping; move-in is the day before (Aug 10) for 2026.",
         "Arrive rested \u2014 fly in a day early and ease in. The Szigetbus runs from the airport.",
         "Work in Budapest's thermal baths for the best recovery in Europe."],
-  cost:"\u2248 \u20ac95\u2013\u20ac220 by pass",costNote:"Day & 5-day passes; camping extra; instalment plans offered. All ages. Confirm live.",
+  cost:"\u2248 \u20ac350+ 5-day pass",costNote:"Day tickets cheaper; 5-month instalment plans offered. All ages. Confirm live.",
   ticket:"On sale now with instalment plans. 5-day and day passes available.",
   editions:[["2026","Aug 11\u201315","c"],["2027","Mid-August (projected)","p"],["2028","Mid-August (projected)","p"],["2029","Mid-August (projected)","p"],["2030","Mid-August (projected)","p"]],
   spotify:"Sziget",official:"https://szigetfestival.com/en",schedule:"https://szigetfestival.com/en/lineup",
@@ -295,6 +410,18 @@ const FESTS=[
 ];
 
 const AFTERS=[
+ {city:"Around Electric Forest \u2014 the Forest Family",sub:"Rothbury, MI \u00b7 the scene is the festival",
+  spots:["The Forest is famously open and queer-welcoming \u2014 'Forest Family' isn't a slogan, it's the point.",
+         "Want a night out off-site? Grand Rapids has the nearest bars and scene, ~45 min away.",
+         "PLUR culture means you'll find your people on-site fast, no club required."]},
+ {city:"Around Lollapalooza \u2014 Chicago",sub:"Illinois",
+  spots:["Northalsted (long known as Boystown) is one of America's great gay neighbourhoods \u2014 bars, dancing, a whole district.",
+         "Staying downtown puts you minutes away by train.",
+         "Chicago carries its Pride energy right through the summer."]},
+ {city:"Around EDC Orlando \u2014 Orlando",sub:"Florida",
+  spots:["Orlando's LGBTQ+ nightlife clusters around the Mills 50 and downtown areas.",
+         "EDC's 'All Are Welcome' ethos is explicitly inclusive \u2014 the festival itself is a safe, joyful crowd.",
+         "EDC runs late, so plan your off-site nights around the festival schedule, not against it."]},
  {city:"Around Tomorrowland \u2014 Antwerp & Brussels",sub:"Belgium \u00b7 30\u201345 min from Boom",
   spots:["Brussels' gay quarter clusters around Rue du March\u00e9 au Charbon \u2014 bars, dancing, easy to wander.",
          "Antwerp has a relaxed, stylish scene if you base there instead.",
@@ -318,10 +445,10 @@ const AFTERS=[
 ];
 
 const QUIZ=[
- {q:"What pulls you in?",opts:[{t:"Pure electronic euphoria",s:{tml:3,rir:1}},{t:"A bit of everything",s:{glasto:3,sziget:3}},{t:"Live bands, real instruments",s:{fuji:3,glasto:1}},{t:"Big, loud party energy",s:{rir:3,tml:1}}]},
- {q:"Camping or a comfy bed?",opts:[{t:"Camping's part of the fun",s:{glasto:2,sziget:2}},{t:"I want a real bed nearby",s:{tml:2,rir:2,fuji:1}}]},
- {q:"How far will you fly?",opts:[{t:"Keep it to Europe",s:{tml:2,glasto:2,sziget:2}},{t:"Anywhere on the map",s:{fuji:3,rir:3}}]},
- {q:"Your ideal crowd?",opts:[{t:"Massive and electric",s:{tml:2,rir:2,glasto:1}},{t:"Big but calm and kind",s:{fuji:3,sziget:1}}]}
+ {q:"What pulls you in?",opts:[{t:"Pure electronic euphoria",s:{tml:3,edc:3,ef:1,rir:1}},{t:"A bit of everything",s:{glasto:3,sziget:3,lolla:3}},{t:"Live bands, real instruments",s:{fuji:3,glasto:1,ef:2}},{t:"Big, loud party energy",s:{rir:3,edc:2,tml:1,lolla:1}}]},
+ {q:"Camping or a comfy bed?",opts:[{t:"Camping's part of the fun",s:{glasto:2,sziget:2,ef:2}},{t:"I want a real bed nearby",s:{tml:2,rir:2,fuji:1,lolla:2,edc:2}}]},
+ {q:"How far do you want to travel?",opts:[{t:"Stay in the US",s:{ef:3,lolla:3,edc:3}},{t:"Cross an ocean",s:{tml:2,glasto:2,sziget:2,fuji:2,rir:2}}]},
+ {q:"Your ideal crowd?",opts:[{t:"Massive and electric",s:{tml:2,rir:2,glasto:1,lolla:2,edc:2}},{t:"Big but calm and kind",s:{fuji:3,sziget:1,ef:2}}]}
 ];
 
 const CHECKLIST=["Register / set a ticket-sale reminder (the good ones sell out fast)","Lock flights early \u2014 festival weekends spike prices","Sort a travel eSIM so you've got data without bill shock","Check passport validity + whether you need a visa","Travel insurance that actually covers events","Pack for weather you don't expect (rain gear + layers)","Comfortable broken-in shoes \u2014 you'll walk miles","A power bank + offline maps of the site and city","Some local cash as backup to cards/wristbands","Share your plans with someone back home"];
@@ -330,12 +457,20 @@ let activeGenre="All";
 const homeEl=document.getElementById('home'),chipsEl=document.getElementById('chips');
 function allGenres(){const s=new Set(["All"]);FESTS.forEach(f=>f.genres.forEach(g=>s.add(g)));return[...s];}
 function renderChips(){chipsEl.innerHTML=allGenres().map(g=>`<button class="chip" data-g="${g}" aria-pressed="${g===activeGenre}">${g}</button>`).join('');}
+function cardHTML(f){
+  return `<div class="card" data-id="${f.id}">
+    <div class="poster" style="background:linear-gradient(135deg,${f.grad[0]},${f.grad[1]})">
+      ${f.featured?'<span class="star">\u2605 Keon\u2019s Pick</span>':''}<div class="pname">${f.name}</div></div>
+    <div class="meta"><span class="where">${f.where}</span><span class="when">Next: ${f.next}</span></div>
+    <div class="gchips">${f.genres.map(g=>`<span class="g">${g}</span>`).join('')}</div></div>`;
+}
 function renderHome(){
   const list=FESTS.filter(f=>activeGenre==="All"||f.genres.includes(activeGenre));
-  homeEl.innerHTML=list.map(f=>`<div class="card" data-id="${f.id}">
-    <div class="poster" style="background:linear-gradient(135deg,${f.grad[0]},${f.grad[1]})"><div class="pname">${f.name}</div></div>
-    <div class="meta"><span class="where">${f.where}</span><span class="when">Next: ${f.next}</span></div>
-    <div class="gchips">${f.genres.map(g=>`<span class="g">${g}</span>`).join('')}</div></div>`).join('');
+  const picks=list.filter(f=>f.featured), rest=list.filter(f=>!f.featured);
+  let html='';
+  if(picks.length){html+=`<div class="sectlabel">\u2605 Keon\u2019s Picks</div>`+picks.map(cardHTML).join('');}
+  if(rest.length){html+=`<div class="sectlabel muted">Bucket list <span class="sub">\u00b7 worth crossing an ocean for</span></div>`+rest.map(cardHTML).join('');}
+  homeEl.innerHTML=html;
 }
 
 function cdParts(iso){const diff=new Date(iso)-new Date();if(diff<=0)return null;
@@ -406,17 +541,59 @@ function showResult(){
 function renderCheck(){const done=store.get('kit')||{};
   document.getElementById('checkBody').innerHTML=CHECKLIST.map((c,i)=>`<div class="check" data-i="${i}" data-done="${!!done[i]}"><div class="box">\u2713</div><div class="lbl">${c}</div></div>`).join('');}
 
-const panels=['home','quiz','check','afters'];
+const panels=['home','quiz','check','afters','guide','journeys'];
 function go(name){
   panels.forEach(p=>document.getElementById(p).classList.toggle('show',p===name));
   document.querySelectorAll('nav button').forEach(b=>b.setAttribute('aria-current',b.dataset.go===name));
   document.querySelector('header .chips').style.display=name==='home'?'flex':'none';
+  document.getElementById('menuPop').classList.remove('open');
   window.scrollTo(0,0);
 }
 
 let aftersUnlocked=!!store.get('afters');
 function renderAfters(){document.getElementById('aftersBody').innerHTML=AFTERS.map(a=>`<div class="acity"><h3>${a.city}</h3><div class="csub">${a.sub}</div>${a.spots.map(s=>`<div class="spot">${s}</div>`).join('')}</div>`).join('');}
 function revealAfters(){document.querySelector('.afters-nav').hidden=false;if(!aftersUnlocked){aftersUnlocked=true;store.set('afters',true);toast("\uD83C\uDF19 The Afters unlocked");}}
+
+const JOURNEYS=[
+ {n:"01",title:"Personality & Inner Wiring",desc:"What energizes and drains you, your patterns, how you show up under pressure.",theme:"Personality & Inner Wiring",framing:"how you're built \u2014 what energizes and drains you, the patterns you repeat, and how you show up, especially under pressure"},
+ {n:"02",title:"The Experiences You Crave",desc:"What 'more of the world' really means to you; novelty versus comfort.",theme:"The Experiences You Crave",framing:"the experiences you hunger for, your appetite for novelty versus comfort, and what 'seeing more of the world' really means to you"},
+ {n:"03",title:"Identity & Authenticity",desc:"Who you are versus who you perform; where you feel most yourself.",theme:"Identity & Authenticity",framing:"who you are versus who you perform for others, and where and when you feel most like yourself"},
+ {n:"04",title:"Connection & Belonging",desc:"How you bond, what belonging feels like, and who your people are.",theme:"Connection & Belonging",framing:"how you form close bonds, what belonging feels like for you, and who your people \u2014 your chosen family \u2014 really are"},
+ {n:"05",title:"Music & Joy",desc:"What moves you, the soundtrack of your life, where joy lives.",theme:"Music & Joy",framing:"what moves you, the soundtrack of your life, and where your joy actually lives"},
+ {n:"06",title:"Growth & The Next Chapter",desc:"The decade ahead \u2014 hopes, fears, and intentions as you turn 29.",theme:"Growth & The Next Chapter",framing:"the decade ahead \u2014 your hopes, your fears, and the intentions you want to carry as you turn 29"}
+];
+function buildPrompt(j){
+  return `You are my thoughtful, warm, and perceptive interviewer. Your job is to help me explore one theme about myself: ${j.theme}. We're looking at ${j.framing}.
+
+Optional focus from me: [your specific angle \u2014 leave this blank for an open exploration]
+
+Follow these rules exactly:
+1. Ask me ONE question at a time. Never put more than one question in a single message.
+2. After you ask a question, STOP and WAIT for my answer. Do not continue or answer on my behalf.
+3. When I answer, reflect back what you heard in a sentence, then ASK if I'm ready for the next question. Only continue once I say I'm ready.
+4. Adapt each next question to what I just told you \u2014 follow the threads with energy, go deeper where it's alive, and don't cling to a rigid script.
+5. Keep questions open-ended and curious, never leading. One idea per question.
+6. Continue for about 8 to 12 questions, or until it feels complete.
+7. When we finish (or when I say \u201Cwrap up\u201D), summarize what you've learned about me on this theme \u2014 the patterns, the surprises, and a few honest insights \u2014 written warmly and directly to me.
+
+Begin by telling me in one or two sentences what this conversation will explore, then ask your first question. Just one question, then wait.`;
+}
+function escHTML(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function renderJourneys(){
+  document.getElementById('journeysBody').innerHTML=JOURNEYS.map((j,i)=>`<div class="jcard">
+    <div class="jnum">${j.n}</div><h3>${j.title}</h3><div class="jdesc">${j.desc}</div>
+    <div class="promptbox">${escHTML(buildPrompt(j))}</div>
+    <button class="copybtn" data-j="${i}">Copy prompt</button></div>`).join('');
+}
+function copyText(t){
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(()=>toast("\u2713 Copied \u2014 paste into any AI")).catch(()=>fallbackCopy(t));}
+  else fallbackCopy(t);
+}
+function fallbackCopy(t){
+  const ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');toast("\u2713 Copied \u2014 paste into any AI");}catch(e){toast("Select the text to copy");}
+  document.body.removeChild(ta);
+}
 
 let toastT=null;
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),1800);}
@@ -428,6 +605,10 @@ document.getElementById('backBtn').onclick=closeFest;
 document.getElementById('quizBody').onclick=e=>{const o=e.target.closest('.opt');if(!o)return;answers[o.dataset.q]=+o.dataset.o;renderQuiz();};
 document.getElementById('checkBody').onclick=e=>{const c=e.target.closest('.check');if(!c)return;const i=c.dataset.i,done=store.get('kit')||{};done[i]=!done[i];store.set('kit',done);c.dataset.done=!!done[i];};
 document.getElementById('nav').onclick=e=>{const b=e.target.closest('button');if(b)go(b.dataset.go);};
+document.getElementById('menuBtn').onclick=e=>{e.stopPropagation();document.getElementById('menuPop').classList.toggle('open');};
+document.getElementById('menuPop').onclick=e=>{const b=e.target.closest('button');if(b)go(b.dataset.go);};
+document.addEventListener('click',e=>{const pop=document.getElementById('menuPop');if(pop.classList.contains('open')&&!e.target.closest('#menuPop')&&!e.target.closest('#menuBtn'))pop.classList.remove('open');});
+document.getElementById('journeysBody').onclick=e=>{const b=e.target.closest('.copybtn');if(b)copyText(buildPrompt(JOURNEYS[+b.dataset.j]));};
 let taps=0,tapT=null;
 document.getElementById('wordmark').addEventListener('click',()=>{taps++;clearTimeout(tapT);tapT=setTimeout(()=>taps=0,600);if(taps>=3){taps=0;revealAfters();go('afters');}});
 
@@ -443,7 +624,7 @@ document.getElementById('wordmark').addEventListener('click',()=>{taps++;clearTi
 /* register the service worker for genuine offline (works once hosted over https) */
 if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('./sw.js').catch(()=>{});});}
 
-renderChips();renderHome();renderQuiz();renderCheck();renderAfters();
+renderChips();renderHome();renderQuiz();renderCheck();renderAfters();renderJourneys();
 if(aftersUnlocked)document.querySelector('.afters-nav').hidden=false;
 </script>
 </body>
