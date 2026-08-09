@@ -6,6 +6,11 @@
 const CACHE = 'keons-playlist-v7';
 
 self.addEventListener('install', (e) => {
+  e.waitUntil(
+    caches.open(CACHE)
+      .then((c) => c.addAll(['./guia.html']))
+      .catch(() => {})
+  );
   self.skipWaiting();
 });
 
