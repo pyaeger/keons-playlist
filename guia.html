@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1d5c4d">
+<title>Mi Guía de Ayuda</title>
+<style>
+  :root{
+    --verde:#1d5c4d;
+    --verde-claro:#e6f2ee;
+    --crema:#faf6ef;
+    --coral:#d9634a;
+    --coral-claro:#fdece7;
+    --dorado:#c98a2d;
+    --dorado-claro:#fdf3e0;
+    --tinta:#2b2b28;
+    --gris:#6f6f68;
+    --linea:#e3ddd2;
+    --blanco:#ffffff;
+    --radio:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html{font-size:17px}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    background:var(--crema);
+    color:var(--tinta);
+    line-height:1.55;
+    padding-bottom:60px;
+  }
+  header{
+    background:var(--verde);
+    color:#fff;
+    padding:28px 20px 24px;
+    text-align:center;
+    border-radius:0 0 24px 24px;
+  }
+  header h1{font-size:1.7rem;line-height:1.25}
+  header p{margin-top:8px;font-size:1rem;opacity:.92}
+  .sello{
+    display:inline-block;margin-top:12px;padding:6px 14px;
+    background:rgba(255,255,255,.15);border-radius:999px;font-size:.85rem;
+  }
+  main{padding:16px 12px;max-width:640px;margin:0 auto}
+
+  /* ---- Secciones plegables ---- */
+  .seccion{
+    background:var(--blanco);
+    border:1px solid var(--linea);
+    border-radius:var(--radio);
+    margin-bottom:14px;
+    overflow:hidden;
+    box-shadow:0 1px 3px rgba(0,0,0,.05);
+  }
+  .seccion-boton{
+    width:100%;
+    display:flex;align-items:center;gap:12px;
+    padding:18px 16px;
+    background:none;border:none;
+    font:inherit;color:inherit;
+    text-align:left;cursor:pointer;
+    min-height:64px;
+  }
+  .seccion-boton .icono{font-size:1.7rem;flex-shrink:0}
+  .seccion-boton .titulo{flex:1;font-weight:700;font-size:1.08rem;line-height:1.3}
+  .seccion-boton .flecha{
+    font-size:1.1rem;color:var(--gris);
+    transition:transform .25s ease;flex-shrink:0;
+  }
+  .seccion.abierta .flecha{transform:rotate(180deg)}
+  .contenido{display:none;padding:0 16px 20px;border-top:1px dashed var(--linea)}
+  .seccion.abierta .contenido{display:block}
+  .contenido>p, .contenido>h3, .contenido>ul, .contenido>div{margin-top:14px}
+  .contenido h3{font-size:1rem;color:var(--verde)}
+  .suave{color:var(--gris);font-size:.92rem}
+
+  /* ---- Tarjetas ---- */
+  .tarjeta{
+    background:var(--verde-claro);
+    border-radius:12px;
+    padding:14px;
+    margin-top:12px;
+  }
+  .tarjeta h4{font-size:1rem;margin-bottom:6px;color:var(--verde)}
+  .tarjeta.alerta{background:var(--coral-claro)}
+  .tarjeta.alerta h4{color:var(--coral)}
+  .tarjeta.nota{background:var(--dorado-claro)}
+  .tarjeta.nota h4{color:var(--dorado)}
+
+  /* ---- Placeholders editables de contacto ---- */
+  .dato{
+    display:flex;align-items:center;gap:8px;
+    margin-top:8px;
+  }
+  .dato .etiqueta{font-size:.9rem;font-weight:600;flex-shrink:0}
+  .dato input{
+    flex:1;
+    font:inherit;font-size:.95rem;
+    padding:10px 12px;
+    border:2px dashed var(--dorado);
+    border-radius:10px;
+    background:#fffdf7;
+    color:var(--tinta);
+    min-width:0;
+  }
+  .dato input::placeholder{color:#b08b4f;font-style:italic}
+
+  /* ---- Lista con casillas ---- */
+  .pasos{list-style:none}
+  .pasos li{margin-top:10px}
+  .paso{
+    display:flex;align-items:flex-start;gap:12px;
+    width:100%;
+    background:var(--crema);
+    border:1px solid var(--linea);
+    border-radius:12px;
+    padding:14px;
+    font:inherit;text-align:left;cursor:pointer;
+    color:inherit;
+  }
+  .paso .caja{
+    width:28px;height:28px;flex-shrink:0;
+    border:2.5px solid var(--verde);
+    border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.05rem;color:#fff;
+    background:#fff;
+    margin-top:1px;
+  }
+  .paso.hecho .caja{background:var(--verde)}
+  .paso.hecho .texto{text-decoration:line-through;color:var(--gris)}
+  .paso .texto{flex:1;font-size:.98rem}
+
+  /* ---- Botones grandes ---- */
+  .boton{
+    display:block;width:100%;
+    padding:16px;
+    border:none;border-radius:12px;
+    background:var(--verde);color:#fff;
+    font:inherit;font-size:1.05rem;font-weight:700;
+    cursor:pointer;
+    margin-top:12px;
+    min-height:56px;
+  }
+  .boton.secundario{background:#fff;color:var(--verde);border:2px solid var(--verde)}
+  .boton.pequeno{width:auto;padding:10px 16px;min-height:44px;font-size:.95rem;display:inline-block}
+  .boton.rojo{background:var(--coral)}
+
+  /* ---- Formularios ---- */
+  .fila-form{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+  .fila-form input, .fila-form select{
+    font:inherit;font-size:1rem;
+    padding:12px;
+    border:1.5px solid var(--linea);
+    border-radius:10px;
+    background:#fff;
+    min-height:50px;
+  }
+  .fila-form input{flex:1;min-width:110px}
+  .fila-form input.chica{flex:0 1 90px;min-width:80px}
+
+  /* ---- Deudas ---- */
+  .deuda{
+    background:var(--crema);
+    border:1px solid var(--linea);
+    border-radius:12px;
+    padding:14px;margin-top:10px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .deuda.primera{border:2px solid var(--coral);background:var(--coral-claro)}
+  .deuda .info{flex:1;min-width:0}
+  .deuda .nombre{font-weight:700}
+  .deuda .detalle{font-size:.9rem;color:var(--gris)}
+  .deuda .tasa{
+    font-weight:800;font-size:1.15rem;color:var(--coral);
+    flex-shrink:0;
+  }
+  .deuda .borrar{
+    background:none;border:none;font-size:1.3rem;color:var(--gris);
+    cursor:pointer;padding:8px;flex-shrink:0;
+  }
+  .aviso-primera{
+    font-size:.85rem;font-weight:700;color:var(--coral);
+    text-transform:uppercase;letter-spacing:.03em;
+  }
+
+  /* ---- Presupuesto ---- */
+  .resumen{
+    display:flex;gap:8px;margin-top:14px;text-align:center;
+  }
+  .resumen .cajita{
+    flex:1;background:var(--crema);border:1px solid var(--linea);
+    border-radius:12px;padding:12px 6px;
+  }
+  .resumen .cajita .num{font-size:1.15rem;font-weight:800}
+  .resumen .cajita .lbl{font-size:.8rem;color:var(--gris)}
+  .resumen .entra .num{color:var(--verde)}
+  .resumen .sale .num{color:var(--coral)}
+  .movimiento{
+    display:flex;align-items:center;gap:10px;
+    padding:10px 4px;border-bottom:1px dashed var(--linea);
+  }
+  .movimiento .desc{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .movimiento .monto{font-weight:700;flex-shrink:0}
+  .movimiento.entra .monto{color:var(--verde)}
+  .movimiento.sale .monto{color:var(--coral)}
+  .movimiento .borrar{
+    background:none;border:none;font-size:1.2rem;color:var(--gris);
+    cursor:pointer;padding:6px;flex-shrink:0;
+  }
+  .selector-tipo{display:flex;gap:8px;margin-top:10px}
+  .selector-tipo button{
+    flex:1;padding:12px;border-radius:10px;font:inherit;font-weight:700;
+    border:2px solid var(--linea);background:#fff;cursor:pointer;min-height:50px;
+  }
+  .selector-tipo button.activo-entra{border-color:var(--verde);background:var(--verde-claro);color:var(--verde)}
+  .selector-tipo button.activo-sale{border-color:var(--coral);background:var(--coral-claro);color:var(--coral)}
+
+  /* ---- Documentos ---- */
+  .doc{margin-top:12px}
+  .doc .nota-lugar{
+    width:100%;font:inherit;font-size:.92rem;
+    margin-top:6px;padding:10px 12px;
+    border:1.5px dashed var(--linea);border-radius:10px;
+    background:#fffdf7;
+  }
+  .doc .nota-lugar::placeholder{color:#a9a598;font-style:italic}
+
+  /* ---- Frase para leer ---- */
+  .frase{
+    background:var(--tinta);color:#fff;
+    border-radius:12px;padding:16px;margin-top:12px;
+    font-size:1.05rem;
+  }
+  .frase .en{display:block;margin-top:8px;font-style:italic;opacity:.85;font-size:.95rem}
+
+  footer{
+    text-align:center;padding:24px 16px;color:var(--gris);font-size:.85rem;
+    max-width:640px;margin:0 auto;
+  }
+  .vacio{color:var(--gris);font-style:italic;font-size:.92rem;margin-top:10px}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🌱 Mi Guía de Ayuda</h1>
+  <p>Paso a paso, con calma. Aquí está todo lo que necesitas, siempre contigo.</p>
+  <div class="sello">📴 Funciona sin internet · 🔒 Todo queda solo en este teléfono</div>
+</header>
+
+<main>
+
+  <!-- ================= 1. INMIGRACIÓN ================= -->
+  <section class="seccion" id="sec-inmigracion">
+    <button class="seccion-boton" aria-expanded="false">
+      <span class="icono">🤝</span>
+      <span class="titulo">Ayuda con inmigración en Louisville</span>
+      <span class="flecha">▼</span>
+    </button>
+    <div class="contenido">
+      <p>Estas organizaciones ayudan a personas <strong>sin importar su estatus migratorio</strong>. Son seguras, confidenciales y tienen experiencia. No tengas miedo de llamar — están para ayudarte.</p>
+
+      <div class="tarjeta">
+        <h4>⛪ Catholic Charities of Louisville — Servicios Legales de Inmigración</h4>
+        <p class="suave">Abogados y representantes acreditados. Consultas de bajo costo.</p>
+        <div class="dato"><span class="etiqueta">☎️</span><input data-guardar="tel-catolicas" placeholder="[ ESCRIBE AQUÍ EL TELÉFONO ]" inputmode="tel"></div>
+        <div class="dato"><span class="etiqueta">🌐</span><input data-guardar="web-catolicas" placeholder="[ ESCRIBE AQUÍ EL SITIO WEB ]"></div>
+      </div>
+
+      <div class="tarjeta">
+        <h4>🏠 Kentucky Refugee Ministries</h4>
+        <p class="suave">Servicios de inmigración y apoyo comunitario para inmigrantes y refugiados.</p>
+        <div class="dato"><span class="etiqueta">☎️</span><input data-guardar="tel-krm" placeholder="[ ESCRIBE AQUÍ EL TELÉFONO ]" inputmode="tel"></div>
+        <div class="dato"><span class="etiqueta">🌐</span><input data-guardar="web-krm" placeholder="[ ESCRIBE AQUÍ EL SITIO WEB ]"></div>
+      </div>
+
+      <div class="tarjeta">
+        <h4>⚖️ Maxwell Street Legal Clinic</h4>
+        <p class="suave">Clínica legal sin fines de lucro, especializada en casos de inmigración.</p>
+        <div class="dato"><span class="etiqueta">☎️</span><input data-guardar="tel-maxwell" placeholder="[ ESCRIBE AQUÍ EL TELÉFONO ]" inputmode="tel"></div>
+        <div class="dato"><span class="etiqueta">🌐</span><input data-guardar="web-maxwell" placeholder="[ ESCRIBE AQUÍ EL SITIO WEB ]"></div>
+      </div>
+
+      <div class="tarjeta nota">
+        <h4>💛 Recuerda</h4>
+        <p>Hablar con estas organizaciones <strong>no te pone en riesgo</strong>. Es confidencial. Un buen abogado puede encontrar opciones que ni sabías que existían.</p>
+      </div>
+
+      <ul class="pasos">
+        <li><button class="paso" data-paso="inm-1"><span class="caja">✓</span><span class="texto">Escribí los teléfonos y sitios web arriba</span></button></li>
+        <li><button class="paso" data-paso="inm-2"><span class="caja">✓</span><span class="texto">Llamé a una organización para pedir una cita</span></button></li>
+        <li><button class="paso" data-paso="inm-3"><span class="caja">✓</span><span class="texto">Fui a mi consulta legal</span></button></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= 2. DEUDAS ================= -->
+  <section class="seccion" id="sec-deudas">
+    <button class="seccion-boton" aria-expanded="false">
+      <span class="icono">💳</span>
+      <span class="titulo">Mis deudas y tarjetas de crédito</span>
+      <span class="flecha">▼</span>
+    </button>
+    <div class="contenido">
+      <p>Respira. Las deudas se resuelven con un plan, no con angustia. Primero, anota aquí <strong>todas</strong> tus deudas con su tasa de interés (el porcentaje que te cobran).</p>
+
+      <div class="fila-form">
+        <input id="deuda-nombre" placeholder="Nombre (ej: Tarjeta Visa)">
+        <input id="deuda-saldo" class="chica" placeholder="Saldo $" inputmode="decimal">
+        <input id="deuda-tasa" class="chica" placeholder="Tasa %" inputmode="decimal">
+      </div>
+      <button class="boton" id="agregar-deuda">➕ Agregar deuda</button>
+
+      <div id="lista-deudas"></div>
+
+      <div class="tarjeta">
+        <h4>📞 Cómo hablar con la tarjeta</h4>
+        <p>Llama al número que está atrás de tu tarjeta y di algo así:</p>
+        <div class="frase">«He sido cliente por un tiempo y quiero ponerme al día. ¿Pueden bajarme la tasa de interés o darme un plan de pagos?»
+          <span class="en">"I've been a customer for a while and I want to catch up. Can you lower my interest rate or offer me a payment plan?"</span>
+        </div>
+        <p class="suave" style="margin-top:10px">Muchas veces dicen que sí. Si dicen que no, pide hablar con un supervisor o vuelve a llamar otro día. No pierdes nada con preguntar.</p>
+      </div>
+
+      <ul class="pasos">
+        <li><button class="paso" data-paso="deu-1"><span class="caja">✓</span><span class="texto">Anoté todas mis deudas con su tasa de interés</span></button></li>
+        <li><button class="paso" data-paso="deu-2"><span class="caja">✓</span><span class="texto">Llamé a cada tarjeta para pedir una tasa más baja o un plan de pagos</span></button></li>
+        <li><button class="paso" data-paso="deu-3"><span class="caja">✓</span><span class="texto">Estoy pagando primero la tarjeta con el interés más alto (y el mínimo en las demás)</span></button></li>
+        <li><button class="paso" data-paso="deu-4"><span class="caja">✓</span><span class="texto">Contacté a una agencia de consejería de crédito sin fines de lucro</span></button></li>
+      </ul>
+
+      <div class="tarjeta nota">
+        <h4>🏢 Consejería de crédito sin fines de lucro</h4>
+        <p class="suave">Son agencias que te ayudan gratis o casi gratis a organizar tus deudas. Busca una acreditada por la NFCC (Fundación Nacional de Consejería de Crédito).</p>
+        <div class="dato"><span class="etiqueta">☎️</span><input data-guardar="tel-credito" placeholder="[ ESCRIBE AQUÍ EL TELÉFONO ]" inputmode="tel"></div>
+        <div class="dato"><span class="etiqueta">🌐</span><input data-guardar="web-credito" placeholder="[ ESCRIBE AQUÍ EL SITIO WEB ]"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 3. INGRESOS ================= -->
+  <section class="seccion" id="sec-ingresos">
+    <button class="seccion-boton" aria-expanded="false">
+      <span class="icono">💪</span>
+      <span class="titulo">Formas honestas de ganar dinero</span>
+      <span class="flecha">▼</span>
+    </button>
+    <div class="contenido">
+      <p>Hay caminos reales y legales para generar ingresos que <strong>no dependen de la nómina de otra persona</strong>. Tu trabajo tiene valor.</p>
+
+      <div class="tarjeta">
+        <h4>🛠️ Trabajo por cuenta propia</h4>
+        <p>Limpieza, cocina, costura, jardinería, cuidado de niños o adultos mayores, reparaciones. Puedes obtener un número <strong>ITIN</strong> del IRS para declarar impuestos como trabajador independiente — eso crea un historial que ayuda mucho en casos de inmigración.</p>
+      </div>
+
+      <div class="tarjeta">
+        <h4>📋 Trabajo por contrato</h4>
+        <p>Ofrecer servicios directamente a clientes: pintura, construcción, mudanzas, eventos. Cobra por trabajo terminado, da recibos y guarda copias — los recibos son tu prueba de ingreso.</p>
+      </div>
+
+      <div class="tarjeta">
+        <h4>🧰 Oficios que se pagan en efectivo</h4>
+        <p>Venta de comida, artesanías, mercados de pulgas, servicios en la comunidad. Anota todo lo que ganas (en la sección de presupuesto de esta guía) — llevar cuentas claras siempre te protege.</p>
+      </div>
+
+      <div class="tarjeta">
+        <h4>📄 El camino más importante: un permiso de trabajo real</h4>
+        <p>Algunos casos de inmigración (asilo, visa U, visa T, VAWA, TPS y otros) pueden dar derecho a un <strong>permiso de trabajo legítimo</strong>. Por eso la consulta legal de la primera sección es tan importante: puede abrir la puerta a trabajar con todos los derechos.</p>
+      </div>
+
+      <ul class="pasos">
+        <li><button class="paso" data-paso="ing-1"><span class="caja">✓</span><span class="texto">Hice una lista de lo que sé hacer y podría cobrar</span></button></li>
+        <li><button class="paso" data-paso="ing-2"><span class="caja">✓</span><span class="texto">Pregunté al abogado sobre el ITIN y sobre permisos de trabajo</span></button></li>
+        <li><button class="paso" data-paso="ing-3"><span class="caja">✓</span><span class="texto">Empecé a guardar recibos y anotar mis ingresos</span></button></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= 4. PRESUPUESTO ================= -->
+  <section class="seccion" id="sec-presupuesto">
+    <button class="seccion-boton" aria-expanded="false">
+      <span class="icono">📊</span>
+      <span class="titulo">Mi presupuesto de la semana</span>
+      <span class="flecha">▼</span>
+    </button>
+    <div class="contenido">
+      <p>Cada semana, anota lo que <strong>entra</strong> y lo que <strong>sale</strong>. Ver los números con claridad quita miedo y da control.</p>
+
+      <div class="resumen">
+        <div class="cajita entra"><div class="num" id="total-entra">$0</div><div class="lbl">Entra 🟢</div></div>
+        <div class="cajita sale"><div class="num" id="total-sale">$0</div><div class="lbl">Sale 🔴</div></div>
+        <div class="cajita"><div class="num" id="total-queda">$0</div><div class="lbl">Queda 💰</div></div>
+      </div>
+
+      <div class="selector-tipo">
+        <button id="tipo-entra" class="activo-entra">🟢 Entra</button>
+        <button id="tipo-sale">🔴 Sale</button>
+      </div>
+      <div class="fila-form">
+        <input id="mov-desc" placeholder="¿Qué fue? (ej: renta, trabajo)">
+        <input id="mov-monto" class="chica" placeholder="$" inputmode="decimal">
+      </div>
+      <button class="boton" id="agregar-mov">➕ Anotar</button>
+
+      <div id="lista-movs"></div>
+
+      <button class="boton secundario" id="nueva-semana">🗓️ Empezar semana nueva</button>
+      <p class="suave" id="nota-semana" style="margin-top:8px"></p>
+    </div>
+  </section>
+
+  <!-- ================= 5. DOCUMENTOS ================= -->
+  <section class="seccion" id="sec-documentos">
+    <button class="seccion-boton" aria-expanded="false">
+      <span class="icono">📁</span>
+      <span class="titulo">Mis documentos importantes</span>
+      <span class="flecha">▼</span>
+    </button>
+    <div class="contenido">
+      <p>Ten <strong>copias</strong> de tus documentos guardadas en un lugar seguro. Si algún día no tienes los originales a la mano, las copias pueden salvarte.</p>
+
+      <div class="tarjeta">
+        <h4>🔐 Cómo guardarlos de forma segura</h4>
+        <ul style="padding-left:20px;margin-top:6px">
+          <li>Toma <strong>fotos claras</strong> de cada documento (por los dos lados).</li>
+          <li>Guárdalas en una carpeta protegida del teléfono (con clave o huella).</li>
+          <li>Dale copias también a <strong>una persona de mucha confianza</strong>.</li>
+          <li>Guarda copias en papel en un sobre, en un lugar seguro de la casa.</li>
+        </ul>
+      </div>
+
+      <div class="doc">
+        <button class="paso" data-paso="doc-pasaporte"><span class="caja">✓</span><span class="texto"><strong>Pasaporte</strong> — ya tengo copia guardada</span></button>
+        <input class="nota-lugar" data-guardar="lugar-pasaporte" placeholder="¿Dónde está la copia? (solo tú lo sabes)">
+      </div>
+      <div class="doc">
+        <button class="paso" data-paso="doc-greencard"><span class="caja">✓</span><span class="texto"><strong>Tarjeta de residencia (green card)</strong> — ya tengo copia guardada</span></button>
+        <input class="nota-lugar" data-guardar="lugar-greencard" placeholder="¿Dónde está la copia? (solo tú lo sabes)">
+      </div>
+      <div class="doc">
+        <button class="paso" data-paso="doc-papeles"><span class="caja">✓</span><span class="texto"><strong>Papeles de inmigración</strong> (cartas, recibos, notificaciones) — ya tengo copias</span></button>
+        <input class="nota-lugar" data-guardar="lugar-papeles" placeholder="¿Dónde están las copias? (solo tú lo sabes)">
+      </div>
+      <div class="doc">
+        <button class="paso" data-paso="doc-otros"><span class="caja">✓</span><span class="texto"><strong>Otros</strong> (actas de nacimiento, identificaciones, récords médicos)</span></button>
+        <input class="nota-lugar" data-guardar="lugar-otros" placeholder="¿Dónde están las copias? (solo tú lo sabes)">
+      </div>
+
+      <div class="tarjeta alerta">
+        <h4>⚠️ Importante</h4>
+        <p>Nunca entregues tus documentos <strong>originales</strong> a nadie que no sea una autoridad oficial con motivo claro, y nunca los dejes "en garantía" con nadie.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 6. DERECHOS ================= -->
+  <section class="seccion" id="sec-derechos">
+    <button class="seccion-boton" aria-expanded="false">
+      <span class="icono">🛡️</span>
+      <span class="titulo">Conoce tus derechos</span>
+      <span class="flecha">▼</span>
+    </button>
+    <div class="contenido">
+      <p><strong>Toda persona en Estados Unidos tiene derechos</strong>, sin importar su estatus migratorio. Conocerlos te da calma y protección.</p>
+
+      <div class="tarjeta">
+        <h4>🤫 Tienes derecho a guardar silencio</h4>
+        <p>No tienes que responder preguntas sobre dónde naciste, tu estatus, ni cómo entraste al país. Puedes decir con calma que deseas guardar silencio.</p>
+      </div>
+
+      <div class="tarjeta">
+        <h4>🚪 Si tocan a tu puerta</h4>
+        <p><strong>No tienes que abrir.</strong> Pide que pasen la orden por debajo de la puerta. Solo una <strong>orden judicial firmada por un juez</strong> (que diga "U.S. District Court" o el nombre de una corte) les permite entrar. Un formulario de ICE no es una orden de un juez.</p>
+      </div>
+
+      <div class="tarjeta">
+        <h4>✍️ No firmes nada sin abogado</h4>
+        <p>No firmes ningún papel que no entiendas o sin hablar con un abogado. Firmar puede quitarte derechos u opciones que sí tenías.</p>
+      </div>
+
+      <div class="tarjeta">
+        <h4>🗣️ Frase para decir (o mostrar en el teléfono)</h4>
+        <div class="frase">«Estoy ejerciendo mi derecho a guardar silencio. Quiero hablar con un abogado. No autorizo la entrada ni ningún registro.»
+          <span class="en">"I am exercising my right to remain silent. I want to speak with a lawyer. I do not consent to entry or to any search."</span>
+        </div>
+      </div>
+
+      <div class="tarjeta alerta">
+        <h4>🧭 Nunca hagas esto</h4>
+        <ul style="padding-left:20px;margin-top:6px">
+          <li>No corras ni te resistas físicamente.</li>
+          <li>No mientas ni presentes documentos falsos.</li>
+          <li>No des documentos de otro país sin consultar a un abogado.</li>
+        </ul>
+      </div>
+
+      <ul class="pasos">
+        <li><button class="paso" data-paso="der-1"><span class="caja">✓</span><span class="texto">Me aprendí la frase de guardar silencio</span></button></li>
+        <li><button class="paso" data-paso="der-2"><span class="caja">✓</span><span class="texto">Memoricé el teléfono de una persona de confianza y del abogado</span></button></li>
+        <li><button class="paso" data-paso="der-3"><span class="caja">✓</span><span class="texto">Hice un plan familiar: quién recoge a los niños, dónde están los documentos, a quién llamar</span></button></li>
+      </ul>
+
+      <div class="dato" style="margin-top:14px"><span class="etiqueta">☎️ Emergencia de confianza:</span></div>
+      <div class="dato"><input data-guardar="tel-confianza" placeholder="[ ESCRIBE AQUÍ EL TELÉFONO DE TU PERSONA DE CONFIANZA ]" inputmode="tel"></div>
+    </div>
+  </section>
+
+  <!-- ================= 7. BIENESTAR ================= -->
+  <section class="seccion" id="sec-bienestar">
+    <button class="seccion-boton" aria-expanded="false">
+      <span class="icono">🌤️</span>
+      <span class="titulo">Para el corazón y la mente</span>
+      <span class="flecha">▼</span>
+    </button>
+    <div class="contenido">
+      <p>Esto es solo por si algún día lo quieres. Estás cargando mucho, y no tienes que cargarlo en silencio ni a solas.</p>
+
+      <div class="tarjeta">
+        <h4>🌬️ Cuando sientas presión en el pecho</h4>
+        <p>Respira lento: 4 segundos entrando el aire, 4 segundos sosteniéndolo, 6 segundos soltándolo. Repite 5 veces. Es simple, y de verdad ayuda.</p>
+      </div>
+
+      <div class="tarjeta">
+        <h4>👥 La comunidad cuenta</h4>
+        <p>Una caminata, una llamada con alguien querido, la iglesia, un grupo de la comunidad. No es debilidad pedir compañía — es sabiduría.</p>
+      </div>
+
+      <div class="tarjeta">
+        <h4>📞 Si un día es muy pesado</h4>
+        <p>La línea <strong>988</strong> escucha en español, gratis y confidencial, a cualquier hora: marca <strong>988</strong> y oprime <strong>2</strong> para español. No preguntan estatus migratorio.</p>
+      </div>
+
+      <p class="suave" style="margin-top:14px">Eres más fuerte de lo que crees, y no estás solo. Un paso a la vez. 💛</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Esta guía vive en tu teléfono y funciona sin internet.<br>
+  Lo que escribes aquí se guarda <strong>solamente en este teléfono</strong> — nada se envía a ningún lado.
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var P = "guia:";
+  function leer(k, def){ try{ var v = localStorage.getItem(P+k); return v===null?def:JSON.parse(v);}catch(e){return def;} }
+  function guardar(k, v){ try{ localStorage.setItem(P+k, JSON.stringify(v)); }catch(e){} }
+
+  /* ---- Secciones plegables ---- */
+  document.querySelectorAll(".seccion-boton").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var sec = btn.parentElement;
+      var abierta = sec.classList.toggle("abierta");
+      btn.setAttribute("aria-expanded", abierta ? "true" : "false");
+    });
+  });
+
+  /* ---- Casillas de pasos ---- */
+  document.querySelectorAll(".paso[data-paso]").forEach(function(btn){
+    var clave = "paso:" + btn.getAttribute("data-paso");
+    if (leer(clave, false)) btn.classList.add("hecho");
+    btn.addEventListener("click", function(){
+      var hecho = btn.classList.toggle("hecho");
+      guardar(clave, hecho);
+    });
+  });
+
+  /* ---- Campos editables (teléfonos, sitios, notas) ---- */
+  document.querySelectorAll("input[data-guardar]").forEach(function(inp){
+    var clave = "campo:" + inp.getAttribute("data-guardar");
+    inp.value = leer(clave, "");
+    inp.addEventListener("input", function(){ guardar(clave, inp.value); });
+  });
+
+  /* ---- Deudas ---- */
+  var deudas = leer("deudas", []);
+  var listaDeudas = document.getElementById("lista-deudas");
+  function dinero(n){ return "$" + (Math.round(n*100)/100).toLocaleString("es-US"); }
+  function pintarDeudas(){
+    listaDeudas.innerHTML = "";
+    if (!deudas.length){
+      listaDeudas.innerHTML = '<p class="vacio">Todavía no has anotado ninguna deuda.</p>';
+      return;
+    }
+    var orden = deudas.slice().sort(function(a,b){ return b.tasa - a.tasa; });
+    orden.forEach(function(d, i){
+      var div = document.createElement("div");
+      div.className = "deuda" + (i===0 ? " primera" : "");
+      var info = document.createElement("div");
+      info.className = "info";
+      if (i===0){
+        var av = document.createElement("div");
+        av.className = "aviso-primera";
+        av.textContent = "🎯 Empieza por esta";
+        info.appendChild(av);
+      }
+      var nom = document.createElement("div");
+      nom.className = "nombre";
+      nom.textContent = d.nombre;
+      var det = document.createElement("div");
+      det.className = "detalle";
+      det.textContent = "Saldo: " + dinero(d.saldo);
+      info.appendChild(nom); info.appendChild(det);
+      var tasa = document.createElement("div");
+      tasa.className = "tasa";
+      tasa.textContent = d.tasa + "%";
+      var borrar = document.createElement("button");
+      borrar.className = "borrar";
+      borrar.setAttribute("aria-label","Borrar esta deuda");
+      borrar.textContent = "🗑️";
+      borrar.addEventListener("click", function(){
+        var idx = deudas.indexOf(d);
+        if (idx > -1) deudas.splice(idx, 1);
+        guardar("deudas", deudas);
+        pintarDeudas();
+      });
+      div.appendChild(info); div.appendChild(tasa); div.appendChild(borrar);
+      listaDeudas.appendChild(div);
+    });
+  }
+  document.getElementById("agregar-deuda").addEventListener("click", function(){
+    var nombre = document.getElementById("deuda-nombre").value.trim();
+    var saldo = parseFloat(document.getElementById("deuda-saldo").value.replace(",", "."));
+    var tasa = parseFloat(document.getElementById("deuda-tasa").value.replace(",", "."));
+    if (!nombre || isNaN(saldo) || isNaN(tasa)) { alert("Escribe el nombre, el saldo y la tasa de interés. 💛"); return; }
+    deudas.push({nombre:nombre, saldo:saldo, tasa:tasa});
+    guardar("deudas", deudas);
+    document.getElementById("deuda-nombre").value = "";
+    document.getElementById("deuda-saldo").value = "";
+    document.getElementById("deuda-tasa").value = "";
+    pintarDeudas();
+  });
+  pintarDeudas();
+
+  /* ---- Presupuesto semanal ---- */
+  var movs = leer("movimientos", []);
+  var tipoActual = "entra";
+  var listaMovs = document.getElementById("lista-movs");
+  var btnEntra = document.getElementById("tipo-entra");
+  var btnSale = document.getElementById("tipo-sale");
+
+  function pintarTipo(){
+    btnEntra.className = tipoActual === "entra" ? "activo-entra" : "";
+    btnSale.className = tipoActual === "sale" ? "activo-sale" : "";
+  }
+  btnEntra.addEventListener("click", function(){ tipoActual = "entra"; pintarTipo(); });
+  btnSale.addEventListener("click", function(){ tipoActual = "sale"; pintarTipo(); });
+
+  function pintarMovs(){
+    listaMovs.innerHTML = "";
+    var entra = 0, sale = 0;
+    if (!movs.length){
+      listaMovs.innerHTML = '<p class="vacio">Todavía no hay nada anotado esta semana.</p>';
+    }
+    movs.forEach(function(m){
+      if (m.tipo === "entra") entra += m.monto; else sale += m.monto;
+      var div = document.createElement("div");
+      div.className = "movimiento " + m.tipo;
+      var desc = document.createElement("span");
+      desc.className = "desc";
+      desc.textContent = (m.tipo === "entra" ? "🟢 " : "🔴 ") + m.desc;
+      var monto = document.createElement("span");
+      monto.className = "monto";
+      monto.textContent = (m.tipo === "entra" ? "+" : "−") + dinero(m.monto);
+      var borrar = document.createElement("button");
+      borrar.className = "borrar";
+      borrar.setAttribute("aria-label","Borrar este movimiento");
+      borrar.textContent = "🗑️";
+      borrar.addEventListener("click", function(){
+        var idx = movs.indexOf(m);
+        if (idx > -1) movs.splice(idx, 1);
+        guardar("movimientos", movs);
+        pintarMovs();
+      });
+      div.appendChild(desc); div.appendChild(monto); div.appendChild(borrar);
+      listaMovs.appendChild(div);
+    });
+    document.getElementById("total-entra").textContent = dinero(entra);
+    document.getElementById("total-sale").textContent = dinero(sale);
+    var queda = entra - sale;
+    var elQueda = document.getElementById("total-queda");
+    elQueda.textContent = (queda < 0 ? "−" : "") + dinero(Math.abs(queda));
+    elQueda.style.color = queda < 0 ? "var(--coral)" : "var(--verde)";
+  }
+
+  document.getElementById("agregar-mov").addEventListener("click", function(){
+    var desc = document.getElementById("mov-desc").value.trim();
+    var monto = parseFloat(document.getElementById("mov-monto").value.replace(",", "."));
+    if (!desc || isNaN(monto)) { alert("Escribe qué fue y cuánto. 💛"); return; }
+    movs.push({desc:desc, monto:Math.abs(monto), tipo:tipoActual});
+    guardar("movimientos", movs);
+    document.getElementById("mov-desc").value = "";
+    document.getElementById("mov-monto").value = "";
+    pintarMovs();
+  });
+
+  var notaSemana = document.getElementById("nota-semana");
+  function pintarNotaSemana(){
+    var ultima = leer("ultima-semana", null);
+    if (ultima){
+      notaSemana.textContent = "Semana pasada: entró " + dinero(ultima.entra) +
+        ", salió " + dinero(ultima.sale) + ".";
+    }
+  }
+  document.getElementById("nueva-semana").addEventListener("click", function(){
+    if (!movs.length){ alert("No hay nada que cerrar todavía. 💛"); return; }
+    if (!confirm("¿Cerrar esta semana y empezar una nueva? Se guardará el total de esta semana.")) return;
+    var entra = 0, sale = 0;
+    movs.forEach(function(m){ if (m.tipo === "entra") entra += m.monto; else sale += m.monto; });
+    guardar("ultima-semana", {entra:entra, sale:sale});
+    movs = [];
+    guardar("movimientos", movs);
+    pintarMovs();
+    pintarNotaSemana();
+  });
+
+  pintarMovs();
+  pintarNotaSemana();
+})();
+</script>
+</body>
+</html>
