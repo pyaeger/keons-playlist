@@ -155,6 +155,7 @@
   .seccion.abierta .inner{opacity:1;transform:none}
   .inner>p, .inner>h3, .inner>ul, .inner>div{margin-top:14px}
   .suave{color:var(--gris);font-size:.92rem}
+  .inner a{color:var(--verde);font-weight:600;word-break:break-all;text-decoration-thickness:1px;text-underline-offset:2px}
 
   /* ================= Tarjetas ================= */
   .tarjeta{
@@ -391,22 +392,22 @@
       <div class="tarjeta">
         <h4>⛪ Catholic Charities of Louisville — Servicios Legales de Inmigración</h4>
         <p class="suave">Abogados y representantes acreditados. Consultas de bajo costo.</p>
-        <div class="dato"><span class="etiqueta">☎️</span><input data-guardar="tel-catolicas" placeholder="[ ESCRIBE AQUÍ EL TELÉFONO ]" inputmode="tel"></div>
-        <div class="dato"><span class="etiqueta">🌐</span><input data-guardar="web-catolicas" placeholder="[ ESCRIBE AQUÍ EL SITIO WEB ]"></div>
+        <div class="dato"><span class="etiqueta">☎️</span><input data-guardar="tel-catolicas" value="502-637-9097" placeholder="[ ESCRIBE AQUÍ EL TELÉFONO ]" inputmode="tel"></div>
+        <div class="dato"><span class="etiqueta">🌐</span><input data-guardar="web-catolicas" value="cclou.org/gethelp/immigration" placeholder="[ ESCRIBE AQUÍ EL SITIO WEB ]"></div>
       </div>
 
       <div class="tarjeta">
         <h4>🏠 Kentucky Refugee Ministries</h4>
         <p class="suave">Servicios de inmigración y apoyo comunitario para inmigrantes y refugiados.</p>
-        <div class="dato"><span class="etiqueta">☎️</span><input data-guardar="tel-krm" placeholder="[ ESCRIBE AQUÍ EL TELÉFONO ]" inputmode="tel"></div>
-        <div class="dato"><span class="etiqueta">🌐</span><input data-guardar="web-krm" placeholder="[ ESCRIBE AQUÍ EL SITIO WEB ]"></div>
+        <div class="dato"><span class="etiqueta">☎️</span><input data-guardar="tel-krm" value="502-479-9180 (inmigración: ext. 586)" placeholder="[ ESCRIBE AQUÍ EL TELÉFONO ]" inputmode="tel"></div>
+        <div class="dato"><span class="etiqueta">🌐</span><input data-guardar="web-krm" value="kyrm.org" placeholder="[ ESCRIBE AQUÍ EL SITIO WEB ]"></div>
       </div>
 
       <div class="tarjeta">
         <h4>⚖️ Maxwell Street Legal Clinic</h4>
-        <p class="suave">Clínica legal sin fines de lucro, especializada en casos de inmigración.</p>
-        <div class="dato"><span class="etiqueta">☎️</span><input data-guardar="tel-maxwell" placeholder="[ ESCRIBE AQUÍ EL TELÉFONO ]" inputmode="tel"></div>
-        <div class="dato"><span class="etiqueta">🌐</span><input data-guardar="web-maxwell" placeholder="[ ESCRIBE AQUÍ EL SITIO WEB ]"></div>
+        <p class="suave">Clínica legal sin fines de lucro, especializada en casos de inmigración. Queda en Lexington y atiende a todo Kentucky por teléfono.</p>
+        <div class="dato"><span class="etiqueta">☎️</span><input data-guardar="tel-maxwell" value="859-233-3840" placeholder="[ ESCRIBE AQUÍ EL TELÉFONO ]" inputmode="tel"></div>
+        <div class="dato"><span class="etiqueta">🌐</span><input data-guardar="web-maxwell" value="kyequaljustice.org/maxlegalaid" placeholder="[ ESCRIBE AQUÍ EL SITIO WEB ]"></div>
       </div>
 
       <div class="tarjeta nota">
@@ -460,9 +461,9 @@
 
       <div class="tarjeta nota">
         <h4>🏢 Consejería de crédito sin fines de lucro</h4>
-        <p class="suave">Son agencias que te ayudan gratis o casi gratis a organizar tus deudas. Busca una acreditada por la NFCC (Fundación Nacional de Consejería de Crédito).</p>
-        <div class="dato"><span class="etiqueta">☎️</span><input data-guardar="tel-credito" placeholder="[ ESCRIBE AQUÍ EL TELÉFONO ]" inputmode="tel"></div>
-        <div class="dato"><span class="etiqueta">🌐</span><input data-guardar="web-credito" placeholder="[ ESCRIBE AQUÍ EL SITIO WEB ]"></div>
+        <p class="suave">Son agencias que te ayudan gratis o casi gratis a organizar tus deudas. La NFCC (Fundación Nacional de Consejería de Crédito) te conecta con una agencia acreditada, y atienden en español.</p>
+        <div class="dato"><span class="etiqueta">☎️</span><input data-guardar="tel-credito" value="877-360-6322 (NFCC, en español)" placeholder="[ ESCRIBE AQUÍ EL TELÉFONO ]" inputmode="tel"></div>
+        <div class="dato"><span class="etiqueta">🌐</span><input data-guardar="web-credito" value="nfcc.org" placeholder="[ ESCRIBE AQUÍ EL SITIO WEB ]"></div>
       </div>
     </div></div>
   </section>
@@ -481,6 +482,7 @@
       <div class="tarjeta">
         <h4>🛠️ Trabajo por cuenta propia</h4>
         <p>Limpieza, cocina, costura, jardinería, cuidado de niños o adultos mayores, reparaciones. Puedes obtener un número <strong>ITIN</strong> del IRS para declarar impuestos como trabajador independiente — eso crea un historial que ayuda mucho en casos de inmigración.</p>
+        <p class="suave" style="margin-top:8px">Información oficial del ITIN (con internet): busca "ITIN" en <a href="https://www.irs.gov/es" target="_blank" rel="noopener">irs.gov/es</a> — la página del IRS en español.</p>
       </div>
 
       <div class="tarjeta">
@@ -588,6 +590,7 @@
         <p>Si tienes un caso de inmigración, guarda aquí tu <strong>número de caso</strong> (el "A-Number", empieza con la letra A). Es uno de los datos más importantes que tienes: con este número, un abogado o tu familia pueden localizar tu caso y ayudarte.</p>
         <div class="dato"><span class="etiqueta">🔢</span><input data-guardar="numero-caso" placeholder="[ ESCRIBE AQUÍ TU NÚMERO DE CASO ]"></div>
         <p class="suave" style="margin-top:8px">Compártelo también con tu persona de confianza, y memorízalo si puedes. Para consultar el estado de un caso en la corte de inmigración existe una línea automática gratuita, en español, de la corte (EOIR): <strong>1-800-898-7180</strong>.</p>
+        <p class="suave" style="margin-top:8px">Con internet, los sitios oficiales (terminan en .gov) son: <a href="https://acis.eoir.justice.gov/es/" target="_blank" rel="noopener">acis.eoir.justice.gov</a> (corte de inmigración) y <a href="https://egov.uscis.gov/casestatus/landing.do" target="_blank" rel="noopener">uscis.gov</a> (solicitudes con USCIS). Consultar tu caso ahí es gratis — nunca pagues por eso.</p>
       </div>
 
       <ul class="pasos">
@@ -680,6 +683,17 @@
         <p>La línea <strong>988</strong> escucha en español, gratis y confidencial, a cualquier hora: marca <strong>988</strong> y oprime <strong>2</strong> para español. No preguntan estatus migratorio.</p>
       </div>
 
+      <div class="tarjeta">
+        <h4>🎥 Para ver cuando tengas internet</h4>
+        <p class="suave">Estos recursos necesitan conexión, pero valen la pena cuando la tengas:</p>
+        <ul style="padding-left:20px;margin-top:8px">
+          <li style="margin-top:6px"><strong>«Hablemos de Inmigración» de Univision</strong> — programa en YouTube, en español, con noticias de inmigración y tus derechos, explicado con calma.</li>
+          <li style="margin-top:6px"><strong>Immigrant Defense Project</strong> — guías y videos en español sobre qué hacer si llega ICE: <a href="https://www.immigrantdefenseproject.org/conozca-sus-derechos-con-ice/" target="_blank" rel="noopener">immigrantdefenseproject.org</a></li>
+          <li style="margin-top:6px"><strong>Centro Nacional de Justicia para Inmigrantes</strong> — conozca sus derechos, en español: <a href="https://immigrantjustice.org/es/" target="_blank" rel="noopener">immigrantjustice.org/es</a></li>
+        </ul>
+        <p class="suave" style="margin-top:10px">Y en TikTok e Instagram hay una comunidad grande de cubanos que se dan ánimo unos a otros compartiendo sus procesos. Buscarla puede ayudarte a sentirte acompañado — solo recuerda: para decisiones de tu caso, confía en tu abogado, no en videos.</p>
+      </div>
+
       <p class="suave" style="margin-top:14px">Eres más fuerte de lo que crees, y no estás solo. Un paso a la vez. 💛</p>
     </div></div>
   </section>
@@ -767,7 +781,8 @@
   /* ---- Campos editables (teléfonos, sitios, notas) ---- */
   document.querySelectorAll("input[data-guardar]").forEach(function(inp){
     var clave = "campo:" + inp.getAttribute("data-guardar");
-    inp.value = leer(clave, "");
+    var guardado = leer(clave, null);
+    if (guardado !== null) inp.value = guardado; /* si no hay nada guardado, queda el valor pre-escrito del HTML */
     inp.addEventListener("input", function(){ guardar(clave, inp.value); });
   });
 
