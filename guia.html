@@ -349,6 +349,43 @@
   }
   .frase .en{display:block;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);font-style:italic;opacity:.8;font-size:.92rem}
 
+  /* ================= Canción ================= */
+  .cancion{
+    background:linear-gradient(150deg,#22302a,#131c18);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:16px;
+    padding:16px;
+    margin-top:12px;
+    color:#f2f5f2;
+  }
+  .cancion .suave{color:rgba(242,245,242,.65)}
+  .cancion-cabeza{display:flex;align-items:center;gap:14px}
+  .cancion-play{
+    width:58px;height:58px;flex-shrink:0;
+    border:none;border-radius:50%;
+    background:linear-gradient(140deg,#3ec9a7,#0e6e5c);
+    color:#0c1512;font-size:1.35rem;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    box-shadow:0 4px 16px -4px rgba(62,201,167,.6);
+    transition:transform .15s ease;
+    padding-left:4px;
+  }
+  .cancion-play.sonando{padding-left:0}
+  .cancion-play:active{transform:scale(.92)}
+  .cancion-info{flex:1;min-width:0}
+  .cancion-titulo{font-weight:800;font-size:1.1rem;letter-spacing:-.01em}
+  .cancion-sub{font-size:.85rem;opacity:.75;margin-top:2px}
+  .cancion-tiempo{font-size:.85rem;font-variant-numeric:tabular-nums;opacity:.8;flex-shrink:0}
+  .cancion-pista{
+    margin-top:14px;height:10px;border-radius:999px;
+    background:rgba(255,255,255,.14);overflow:hidden;cursor:pointer;
+  }
+  .cancion-avance{
+    height:100%;width:0%;border-radius:999px;
+    background:linear-gradient(90deg,#8ef0c6,#3ec9a7);
+  }
+
   footer{
     text-align:center;padding:26px 18px;color:var(--gris);font-size:.85rem;
     max-width:640px;margin:0 auto;line-height:1.7;
@@ -668,6 +705,20 @@
     <div class="contenido"><div class="inner">
       <p>Esto es solo por si algún día lo quieres. Estás cargando mucho, y no tienes que cargarlo en silencio ni a solas.</p>
 
+      <div class="cancion">
+        <div class="cancion-cabeza">
+          <button class="cancion-play" id="play-cancion" aria-label="Reproducir la canción">▶</button>
+          <div class="cancion-info">
+            <div class="cancion-titulo">O, Hache, Eme</div>
+            <div class="cancion-sub">Una canción hecha para ti, con tu historia. 🎵</div>
+          </div>
+          <div class="cancion-tiempo" id="tiempo-cancion">–:––</div>
+        </div>
+        <div class="cancion-pista" id="pista-cancion"><div class="cancion-avance" id="avance-cancion"></div></div>
+        <p class="suave" style="margin-top:10px">«Tres letras que el mar no pudo borrar.» Súbele el volumen y déjala sonar — es tuya, y también funciona sin internet.</p>
+        <audio id="audio-cancion" src="./o-hache-eme.mp3" preload="metadata"></audio>
+      </div>
+
       <div class="tarjeta">
         <h4>🌬️ Cuando sientas presión en el pecho</h4>
         <p>Respira lento: 4 segundos entrando el aire, 4 segundos sosteniéndolo, 6 segundos soltándolo. Repite 5 veces. Es simple, y de verdad ayuda.</p>
@@ -943,6 +994,45 @@
 
   pintarMovs();
   pintarNotaSemana();
+
+  /* ---- Canción: O, Hache, Eme ---- */
+  var audio = document.getElementById("audio-cancion");
+  var btnPlay = document.getElementById("play-cancion");
+  var avance = document.getElementById("avance-cancion");
+  var pista = document.getElementById("pista-cancion");
+  var tiempo = document.getElementById("tiempo-cancion");
+  function fmt(s){
+    if (!isFinite(s)) return "–:––";
+    var m = Math.floor(s / 60), r = Math.floor(s % 60);
+    return m + ":" + (r < 10 ? "0" : "") + r;
+  }
+  btnPlay.addEventListener("click", function(){
+    if (audio.paused) { audio.play(); } else { audio.pause(); }
+  });
+  audio.addEventListener("play", function(){
+    btnPlay.textContent = "❚❚";
+    btnPlay.classList.add("sonando");
+    btnPlay.setAttribute("aria-label","Pausar la canción");
+  });
+  audio.addEventListener("pause", function(){
+    btnPlay.textContent = "▶";
+    btnPlay.classList.remove("sonando");
+    btnPlay.setAttribute("aria-label","Reproducir la canción");
+  });
+  audio.addEventListener("loadedmetadata", function(){ tiempo.textContent = fmt(audio.duration); });
+  audio.addEventListener("timeupdate", function(){
+    if (audio.duration) avance.style.width = (audio.currentTime / audio.duration * 100) + "%";
+    tiempo.textContent = fmt(audio.duration ? (audio.duration - audio.currentTime) : audio.duration);
+  });
+  audio.addEventListener("ended", function(){
+    avance.style.width = "0%";
+    tiempo.textContent = fmt(audio.duration);
+  });
+  pista.addEventListener("click", function(ev){
+    if (!audio.duration) return;
+    var r = pista.getBoundingClientRect();
+    audio.currentTime = Math.max(0, Math.min(1, (ev.clientX - r.left) / r.width)) * audio.duration;
+  });
 
   /* ---- Sin internet: cachear la guía cuando se sirve desde la web ---- */
   if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) {
